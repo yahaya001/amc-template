@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- <link rel="stylesheet" href="background_styles.css"> -->
+      <link rel="stylesheet" href="styles.css">
+      <script src="script.js" defer></script>
+      <title>Responsive Navbar</title>
+    </head>
+    <body>
+      <nav class="navbar">
+        <div class="brand-title"><img src="default.jpg"> Abdulmalik Medical Concept</div>
+        <a href="#" class="toggle-button">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Our Service</a></li>
+            <li><a href="#">Posts</a></li>
+          </ul>
+        </div>
+      </nav>
+
+   <div class="search-bar">
+        <form action="{% url 'product-search' %}">
+            <input type="search" name="searching" placeholder="product search">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+
+    <div class="flex-container">
+     <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+    <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+    <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+    <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+    <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+    <div class="products-div"> 
+      <img src="default.jpg">
+     <p>Lorem ipsum dolor sit amet</p> 
+    </div>
+        </div>
+
+
+
+        <div class="flex-container">
+          <div class="product-div"> 
+           <img src="default.jpg">
+          <p>Lorem ipsum dolor sit amet</p>
+          <p>Lorem ipsum dolor sit amet</p> 
+          <p>Lorem ipsum dolor sit amet</p> 
+          <p>Lorem ipsum dolor sit amet</p>  
+         </div>
+        </div>  
+
+
+
+<div class="wrapper">
+
+
+<div class="form-container">
+<h2> Register at AMC</h2>
+<form class="myForm" action="" method="POST" onsubmit="return registrationValidation();">
+            {%csrf_token%}
+<p><input type="text" placeholder="Username" name="username" maxlength="20" autofocus required></p>
+<p><input type="text" placeholder="Phone number" name="phone" maxlength="30" ></p>
+<p><input type="password" placeholder="Password" name="password1" autocomplete="new-password" required></p>
+<p><input type="password" placeholder="Password repeat" name="password2" autocomplete="new-password" required ></p>
+<button type="submit">Submit</button>
+</form>
+<p id="have-an-account">already have an account? <b> <a href="">login</a></b></p>  
+         </div>
+ </div>      
+ 
+
+         
+
+
+
+  <div class="wrapper">
+       <div class="error_div">
+               {% for message in messages %}
+               <p>the tag is {{message.tags}}</p>
+               <h3 class="errors">{{message}}</h3>
+               {% endfor %}
+           </div> 
+<hr>
+<div class="message"><h3 class="error">Invalid credentials</h3></div>
+<div class="message"><h3 class="succes">Product uploaded</h3></div>
+<div class="message"><h3 class="info">please check your connection</h3></div>
+           <div class="form-container">
+           <h3> Login to AMC </h3>
+           <form class="myForm" action="" method="POST">
+           {% csrf_token %}
+<p><input type="text" placeholder="Username" name="username" maxlength="20" autofocus required></p>        
+<p><input type="password" placeholder="Password" name="password" autocomplete="new-password" required></p>
+<button type="submit">Login</button>
+<p id="have-an-account">Didn't register? <b> <a href="{% url 'account:register' %}">Register now!</a></b></p>
+           </form>
+          </div>  
+     </div>
+
+<div class="wrapper">
+<h2>Are you sure to delete <b> {{information}} </b></h2>
+<form action="" method="POST">
+{%csrf_token%}
+<div class="multi-button">
+<button type="button" ><a href="{{request.META.HTTP_REFERER}}" style="color: green;">Cancel Delete</a></button>
+<button type="submit" style="color: red;">Confirm Delete</button>
+</div>
+
+     </form>
+</div> 
+
+
+
+<div class="wrapper">
+<div class="form-container">
+  <h2>Updating a product</h2>
+<form class="myForm" action="" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="csrfmiddlewaretoken" value="DZJqvQwkEXEDuItWywNyTbi1ZDNXlUrP2nXcooZqszGPnbo1UXhqE5bq0OUqSHSN">
+  
+  <div class="form-field--wrapper">
+      <label>Tittle</label>
+      <input type="text" name="tittle" value="embaether 250 mg" maxlength="50" required id="id_tittle">
+  </div>
+
+  <div class="form-field--wrapper">
+      <label>Name</label>
+      <input type="text" name="name" value="diclofenac" maxlength="50" id="id_name">
+  </div>
+
+  <div class="form-field--wrapper">
+      <label>Company</label>
+      <input type="text" name="company" value="spainish company" maxlength="50" id="id_company">
+  </div>
+
+  <div class="form-field--wrapper">
+      <label>Image</label>
+      Currently: <a href="/media/products/pop_living_room.jpeg">products/pop_living_room.jpeg</a>
+<input type="checkbox" name="image-clear" id="image-clear_id">
+<label for="image-clear_id">Clear</label><br>
+Change:
+<input type="file" name="image" accept="image/*" id="id_image">
+  </div>
+
+  <div class="form-field--wrapper">
+      <label>Price</label>
+      <input type="number" name="price" value="550" id="id_price">
+  </div>
+
+  <div class="form-field--wrapper">
+      <label>Available</label>
+      <select name="available" id="id_available">
+<option value="unknown">Unknown</option>
+
+<option value="true" selected>Yes</option>
+
+<option value="false">No</option>
+
+</select>
+  </div>
+
+<button type="submit">UPDATE PRODDUCT</button>
+</form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<footer>
+  <div class="information">
+      <p>Lorem ipsum dolor sit amet consectetur 
+          adipisicing elit. Architecto quod,
+           ex iste sequi itaque eum modi 
+          voluptatibus ipsum esse molestiae 
+          quam neque soluta beatae praesentium. 
+          Distinctio illum ab dolorum laborum?</p>
+      <a href=""><p>Contact Us</p></a>
+      <a href=""><p>About Us</p></a>
+  </div>
+  <div class="bottom"><a href=""><p>Prepared by Hayat Web Technology</p></a></div>
+</footer>
+    </body>
+</html>
